@@ -68,7 +68,7 @@ export default function TaskListWrapper() {
 
   const { data, error, isLoading, isFetching } = useGetTasksQuery({
     page,
-    limit: 10,
+    limit: 15,
     filters,
     sortBy,
     sortOrder,

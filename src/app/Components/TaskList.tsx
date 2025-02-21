@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import { Task } from "./types";
+import { FixedSizeList as List } from "react-window";
 
 const TaskGrid = styled.div`
   display: flex;
@@ -64,6 +65,11 @@ const StatusBadge = styled.div<{ status: string }>`
       : "#5f6368"};
 `;
 
+const ListContainer = styled.div`
+  height: 600px; // Set a fixed height for virtualization
+  width: 100%;
+`;
+
 export default function TaskList({
   tasks,
   onTaskSelect,
@@ -73,6 +79,79 @@ export default function TaskList({
   onTaskSelect: (task: Task) => void;
   visibleColumns: string[];
 }) {
+  const Row = ({
+    index,
+    style,
+    data,
+  }: {
+    index: number;
+    style: React.CSSProperties;
+    data: {
+      tasks: Task[];
+      visibleColumns: string[];
+      onTaskSelect: (task: Task) => void;
+    };
+  }) => {
+    const task = data.tasks[index];
+    return (
+      <TaskRow
+        style={style}
+        role="button"
+        tabIndex={0}
+        aria-label={`View details of task ${task.name}`}
+        onClick={() => data.onTaskSelect(task)}
+        onKeyDown={(e) => {
+          if (e.key === "Enter" || e.key === " ") {
+            data.onTaskSelect(task);
+          }
+        }}
+      >
+        {data.visibleColumns.includes("index") && (
+          <TaskCell width="5%">{index + 1}</TaskCell>
+        )}
+        {data.visibleColumns.includes("createdAt") && task.createdAt && (
+          <TaskCell width="10%">
+            {new Date(task.createdAt).toLocaleDateString("en-US", {
+              year: "numeric",
+              month: "short",
+              day: "numeric",
+            })}
+          </TaskCell>
+        )}
+        {data.visibleColumns.includes("id") && (
+          <TaskCell width="15%">
+            TASK-{task.id.toString().padStart(3, "0")}
+          </TaskCell>
+        )}
+        {data.visibleColumns.includes("name") && (
+          <TaskCell width="20%">
+            <div style={{ fontWeight: 500 }}>{task.name}</div>
+          </TaskCell>
+        )}
+        {data.visibleColumns.includes("description") && (
+          <TaskCell width="25%">{task.description}</TaskCell>
+        )}
+        {data.visibleColumns.includes("assignee") && (
+          <TaskCell width="10%">{task.assignee}</TaskCell>
+        )}
+        {data.visibleColumns.includes("status") && (
+          <TaskCell width="15%">
+            <StatusBadge status={task.status}>{task.status}</StatusBadge>
+          </TaskCell>
+        )}
+        {data.visibleColumns.includes("dueDate") && (
+          <TaskCell width="10%">
+            {new Date(task.dueDate).toLocaleDateString("en-US", {
+              year: "numeric",
+              month: "short",
+              day: "numeric",
+            })}
+          </TaskCell>
+        )}
+      </TaskRow>
+    );
+  };
+
   return (
     <TaskGrid>
       <TaskHeader>
@@ -98,63 +177,21 @@ export default function TaskList({
         )}
       </TaskHeader>
 
-      {tasks.map((task, index) => (
-        <TaskRow
-          key={task.id}
-          role="button"
-          tabIndex={0}
-          aria-label={`View details of task ${task.name}`}
-          onClick={() => onTaskSelect(task)}
-          onKeyDown={(e) => {
-            if (e.key === "Enter" || e.key === " ") {
-              onTaskSelect(task);
-            }
+      <ListContainer>
+        <List
+          height={600}
+          itemCount={tasks.length}
+          itemSize={80}
+          width="100%"
+          itemData={{
+            tasks,
+            visibleColumns,
+            onTaskSelect,
           }}
         >
-          {visibleColumns.includes("index") && (
-            <TaskCell width="5%">{index + 1}</TaskCell>
-          )}
-          {visibleColumns.includes("createdAt") && task.createdAt && (
-            <TaskCell width="10%">
-              {new Date(task.createdAt).toLocaleDateString("en-US", {
-                year: "numeric",
-                month: "short",
-                day: "numeric",
-              })}
-            </TaskCell>
-          )}
-          {visibleColumns.includes("id") && (
-            <TaskCell width="15%">
-              TASK-{task.id.toString().padStart(3, "0")}
-            </TaskCell>
-          )}
-          {visibleColumns.includes("name") && (
-            <TaskCell width="20%">
-              <div style={{ fontWeight: 500 }}>{task.name}</div>
-            </TaskCell>
-          )}
-          {visibleColumns.includes("description") && (
-            <TaskCell width="25%">{task.description}</TaskCell>
-          )}
-          {visibleColumns.includes("assignee") && (
-            <TaskCell width="10%">{task.assignee}</TaskCell>
-          )}
-          {visibleColumns.includes("status") && (
-            <TaskCell width="15%">
-              <StatusBadge status={task.status}>{task.status}</StatusBadge>
-            </TaskCell>
-          )}
-          {visibleColumns.includes("dueDate") && (
-            <TaskCell width="10%">
-              {new Date(task.dueDate).toLocaleDateString("en-US", {
-                year: "numeric",
-                month: "short",
-                day: "numeric",
-              })}
-            </TaskCell>
-          )}
-        </TaskRow>
-      ))}
+          {Row}
+        </List>
+      </ListContainer>
     </TaskGrid>
   );
 }
