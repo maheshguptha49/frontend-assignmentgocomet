@@ -17,6 +17,7 @@ type ControlsProps = {
   setSortOrder: (value: "asc" | "desc") => void;
   search: string;
   setSearch: (value: string) => void;
+  assignees: string[];
 };
 
 const ControlsContainer = styled.div`
@@ -48,6 +49,7 @@ export default function Controls({
   setSortOrder,
   search,
   setSearch,
+  assignees,
 }: ControlsProps) {
   return (
     <ControlsContainer>
@@ -58,29 +60,19 @@ export default function Controls({
         onChange={(e) => setSearch(e.target.value)}
       />
 
-      <Input
-        placeholder="Filter by name"
-        value={filters.name || ""}
-        onChange={(e) =>
-          setFilters((prev) => ({ ...prev, name: e.target.value }))
-        }
-      />
-
-      <Input
-        placeholder="Filter by description"
-        value={filters.description || ""}
-        onChange={(e) =>
-          setFilters((prev) => ({ ...prev, description: e.target.value }))
-        }
-      />
-
-      <Input
-        placeholder="Filter by assignee"
+      <Select
         value={filters.assignee || ""}
         onChange={(e) =>
           setFilters((prev) => ({ ...prev, assignee: e.target.value }))
         }
-      />
+      >
+        <option value="">All Assignees</option>
+        {assignees.map((assignee) => (
+          <option key={assignee} value={assignee}>
+            {assignee}
+          </option>
+        ))}
+      </Select>
 
       <Select
         value={filters.status || ""}

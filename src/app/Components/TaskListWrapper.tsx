@@ -104,6 +104,13 @@ export default function TaskListWrapper() {
         setSortOrder={setSortOrder}
         search={search}
         setSearch={setSearch}
+        assignees={Array.from(
+          new Set(
+            (data?.data
+              ?.map((task) => task.assignee)
+              .filter(Boolean) as string[]) || []
+          )
+        )}
       />
 
       {error && <ErrorText>Error loading tasks</ErrorText>}
