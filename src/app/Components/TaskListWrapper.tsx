@@ -46,6 +46,17 @@ const LoadingSkeleton = styled.div`
   }
 `;
 
+const DEFAULT_VISIBLE_COLUMNS = [
+  "index",
+  "createdAt",
+  "id",
+  "name",
+  "description",
+  "assignee",
+  "status",
+  "dueDate",
+];
+
 export default function TaskListWrapper() {
   const [page, setPage] = useState(1);
   const [filters, setFilters] = useState<Partial<Task>>({});
@@ -55,16 +66,17 @@ export default function TaskListWrapper() {
   const [selectedTask, setSelectedTask] = useState<Task | null>(null);
   const [isInitialLoad, setIsInitialLoad] = useState(true);
   const [showColumnConfig, setShowColumnConfig] = useState(false);
-  const [visibleColumns, setVisibleColumns] = useState([
-    "index",
-    "createdAt",
-    "id",
-    "name",
-    "description",
-    "assignee",
-    "status",
-    "dueDate",
-  ]);
+  const [visibleColumns, setVisibleColumns] = useState<string[]>(() => {
+    if (typeof window === "undefined") return DEFAULT_VISIBLE_COLUMNS;
+
+    try {
+      const saved = localStorage.getItem("visibleColumns");
+      return saved ? JSON.parse(saved) : DEFAULT_VISIBLE_COLUMNS;
+    } catch (error) {
+      console.error("Error parsing visible columns:", error);
+      return DEFAULT_VISIBLE_COLUMNS;
+    }
+  });
 
   const { data, error, isLoading, isFetching } = useGetTasksQuery({
     page,
@@ -74,6 +86,14 @@ export default function TaskListWrapper() {
     sortOrder,
     search,
   });
+
+  useEffect(() => {
+    try {
+      localStorage.setItem("visibleColumns", JSON.stringify(visibleColumns));
+    } catch (error) {
+      console.error("Error saving visible columns:", error);
+    }
+  }, [visibleColumns]);
 
   const loadMore = useCallback(() => {
     if (data && page < data.totalPages && !isFetching) {
