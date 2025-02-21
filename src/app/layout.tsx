@@ -1,10 +1,18 @@
+import { Figtree } from "next/font/google";
 import type { Metadata } from "next";
 import "./globals.css";
 import { ReduxProviders } from "./Components/redux/Providers";
+import Navbar from "./Components/Navbar";
+
+const figtree = Figtree({
+  subsets: ["latin"],
+  variable: "--font-figtree",
+  weight: ["300", "400", "500", "600", "700"],
+});
 
 export const metadata: Metadata = {
-  title: "Frotnend Assignment",
-  description: "Saas Labs",
+  title: "Frontend Assignment",
+  description: "Go comet",
 };
 
 export default function RootLayout({
@@ -13,9 +21,12 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="en" className={figtree.variable}>
       <body>
-        <ReduxProviders>{children}</ReduxProviders>
+        <ReduxProviders>
+          <Navbar />
+          {children}
+        </ReduxProviders>
       </body>
     </html>
   );

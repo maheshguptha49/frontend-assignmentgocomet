@@ -7,6 +7,7 @@ import Controls from "./Controls";
 import styled from "styled-components";
 import { Task } from "./types";
 import TaskDrawer from "./TaskDrawer";
+import ColumnConfigDrawer from "./ColumnConfigDrawer";
 
 const WrapperContainer = styled.div`
   padding: 2rem;
@@ -53,6 +54,17 @@ export default function TaskListWrapper() {
   const [search, setSearch] = useState("");
   const [selectedTask, setSelectedTask] = useState<Task | null>(null);
   const [isInitialLoad, setIsInitialLoad] = useState(true);
+  const [showColumnConfig, setShowColumnConfig] = useState(false);
+  const [visibleColumns, setVisibleColumns] = useState([
+    "index",
+    "createdAt",
+    "id",
+    "name",
+    "description",
+    "assignee",
+    "status",
+    "dueDate",
+  ]);
 
   const { data, error, isLoading, isFetching } = useGetTasksQuery({
     page,
@@ -111,6 +123,14 @@ export default function TaskListWrapper() {
               .filter(Boolean) as string[]) || []
           )
         )}
+        onColumnConfigClick={() => setShowColumnConfig(true)}
+      />
+
+      <ColumnConfigDrawer
+        isOpen={showColumnConfig}
+        onClose={() => setShowColumnConfig(false)}
+        visibleColumns={visibleColumns}
+        setVisibleColumns={setVisibleColumns}
       />
 
       {error && <ErrorText>Error loading tasks</ErrorText>}
@@ -118,7 +138,11 @@ export default function TaskListWrapper() {
 
       {data && (
         <>
-          <TaskList tasks={data.data} onTaskSelect={setSelectedTask} />
+          <TaskList
+            tasks={data.data}
+            onTaskSelect={setSelectedTask}
+            visibleColumns={visibleColumns}
+          />
           <TaskDrawer
             task={selectedTask}
             onClose={() => setSelectedTask(null)}

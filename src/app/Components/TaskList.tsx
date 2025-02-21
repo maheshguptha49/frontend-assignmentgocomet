@@ -67,21 +67,35 @@ const StatusBadge = styled.div<{ status: string }>`
 export default function TaskList({
   tasks,
   onTaskSelect,
+  visibleColumns,
 }: {
   tasks: Task[];
   onTaskSelect: (task: Task) => void;
+  visibleColumns: string[];
 }) {
   return (
     <TaskGrid>
       <TaskHeader>
-        <TaskCell width="5%">#</TaskCell>
-        <TaskCell width="10%">Created</TaskCell>
-        <TaskCell width="15%">ID</TaskCell>
-        <TaskCell width="20%">Name</TaskCell>
-        <TaskCell width="25%">Description</TaskCell>
-        <TaskCell width="10%">Assignee</TaskCell>
-        <TaskCell width="15%">Status</TaskCell>
-        <TaskCell width="10%">Due Date</TaskCell>
+        {visibleColumns.includes("index") && <TaskCell width="5%">#</TaskCell>}
+        {visibleColumns.includes("createdAt") && (
+          <TaskCell width="10%">Created</TaskCell>
+        )}
+        {visibleColumns.includes("id") && <TaskCell width="15%">ID</TaskCell>}
+        {visibleColumns.includes("name") && (
+          <TaskCell width="20%">Name</TaskCell>
+        )}
+        {visibleColumns.includes("description") && (
+          <TaskCell width="25%">Description</TaskCell>
+        )}
+        {visibleColumns.includes("assignee") && (
+          <TaskCell width="10%">Assignee</TaskCell>
+        )}
+        {visibleColumns.includes("status") && (
+          <TaskCell width="15%">Status</TaskCell>
+        )}
+        {visibleColumns.includes("dueDate") && (
+          <TaskCell width="10%">Due Date</TaskCell>
+        )}
       </TaskHeader>
 
       {tasks.map((task, index) => (
@@ -97,8 +111,10 @@ export default function TaskList({
             }
           }}
         >
-          <TaskCell width="5%">{index + 1}</TaskCell>
-          {task.createdAt && (
+          {visibleColumns.includes("index") && (
+            <TaskCell width="5%">{index + 1}</TaskCell>
+          )}
+          {visibleColumns.includes("createdAt") && task.createdAt && (
             <TaskCell width="10%">
               {new Date(task.createdAt).toLocaleDateString("en-US", {
                 year: "numeric",
@@ -107,24 +123,36 @@ export default function TaskList({
               })}
             </TaskCell>
           )}
-          <TaskCell width="15%">
-            TASK-{task.id.toString().padStart(3, "0")}
-          </TaskCell>
-          <TaskCell width="20%">
-            <div style={{ fontWeight: 500 }}>{task.name}</div>
-          </TaskCell>
-          <TaskCell width="25%">{task.description}</TaskCell>
-          <TaskCell width="10%">{task.assignee}</TaskCell>
-          <TaskCell width="15%">
-            <StatusBadge status={task.status}>{task.status}</StatusBadge>
-          </TaskCell>
-          <TaskCell width="10%">
-            {new Date(task.dueDate).toLocaleDateString("en-US", {
-              year: "numeric",
-              month: "short",
-              day: "numeric",
-            })}
-          </TaskCell>
+          {visibleColumns.includes("id") && (
+            <TaskCell width="15%">
+              TASK-{task.id.toString().padStart(3, "0")}
+            </TaskCell>
+          )}
+          {visibleColumns.includes("name") && (
+            <TaskCell width="20%">
+              <div style={{ fontWeight: 500 }}>{task.name}</div>
+            </TaskCell>
+          )}
+          {visibleColumns.includes("description") && (
+            <TaskCell width="25%">{task.description}</TaskCell>
+          )}
+          {visibleColumns.includes("assignee") && (
+            <TaskCell width="10%">{task.assignee}</TaskCell>
+          )}
+          {visibleColumns.includes("status") && (
+            <TaskCell width="15%">
+              <StatusBadge status={task.status}>{task.status}</StatusBadge>
+            </TaskCell>
+          )}
+          {visibleColumns.includes("dueDate") && (
+            <TaskCell width="10%">
+              {new Date(task.dueDate).toLocaleDateString("en-US", {
+                year: "numeric",
+                month: "short",
+                day: "numeric",
+              })}
+            </TaskCell>
+          )}
         </TaskRow>
       ))}
     </TaskGrid>

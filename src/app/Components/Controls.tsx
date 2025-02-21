@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { useState, useEffect, useRef } from "react";
 
 type Filters = Partial<{
   name: string;
@@ -18,6 +19,7 @@ type ControlsProps = {
   search: string;
   setSearch: (value: string) => void;
   assignees: string[];
+  onColumnConfigClick: () => void;
 };
 
 const ControlsContainer = styled.div`
@@ -40,6 +42,34 @@ const Select = styled.select`
   border-radius: 4px;
 `;
 
+function useDebounce<T>(value: T, delay: number, options = { leading: false }) {
+  const [debouncedValue, setDebouncedValue] = useState(value);
+  const timeoutRef = useRef<NodeJS.Timeout | null>(null);
+  const isLeadingCalledRef = useRef(false);
+
+  useEffect(() => {
+    if (options.leading && !isLeadingCalledRef.current) {
+      setDebouncedValue(value);
+      isLeadingCalledRef.current = true;
+    }
+
+    timeoutRef.current = setTimeout(() => {
+      if (!options.leading) {
+        setDebouncedValue(value);
+      }
+      isLeadingCalledRef.current = false;
+    }, delay);
+
+    return () => {
+      if (timeoutRef.current) {
+        clearTimeout(timeoutRef.current);
+      }
+    };
+  }, [value, delay, options.leading]);
+
+  return debouncedValue;
+}
+
 export default function Controls({
   filters,
   setFilters,
@@ -50,14 +80,22 @@ export default function Controls({
   search,
   setSearch,
   assignees,
+  onColumnConfigClick,
 }: ControlsProps) {
+  const [localInputValue, setLocalInputValue] = useState(search);
+  const debouncedSearchValue = useDebounce(localInputValue, 300);
+
+  useEffect(() => {
+    setSearch(debouncedSearchValue);
+  }, [debouncedSearchValue, setSearch]);
+
   return (
     <ControlsContainer>
       <Input
         type="text"
         placeholder="Search name/description..."
-        value={search}
-        onChange={(e) => setSearch(e.target.value)}
+        value={localInputValue}
+        onChange={(e) => setLocalInputValue(e.target.value)}
       />
 
       <Select
@@ -113,6 +151,13 @@ export default function Controls({
         <option value="asc">Ascending</option>
         <option value="desc">Descending</option>
       </Select>
+
+      <button
+        onClick={onColumnConfigClick}
+        className="p-2 hover:bg-gray-100 rounded-lg"
+      >
+        Edit Columns
+      </button>
     </ControlsContainer>
   );
 }
