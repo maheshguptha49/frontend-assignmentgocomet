@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import { useGetTasksQuery } from "./redux/taskApiSlice";
 import TaskList from "./TaskList";
 import Controls from "./Controls";
@@ -28,23 +28,6 @@ const ErrorText = styled.div`
   font-size: 1.2rem;
 `;
 
-const LoadMoreButton = styled.button`
-  padding: 1rem 2rem;
-  background-color: #007bff;
-  color: #fff;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  margin-top: 1rem;
-  margin-left: auto;
-  display: block;
-
-  &:disabled {
-    background-color: #ccc;
-    cursor: not-allowed;
-  }
-`;
-
 const LoadingSkeleton = styled.div`
   height: 50px;
   background: #f0f0f0;
@@ -69,6 +52,7 @@ export default function TaskListWrapper() {
   const [sortOrder, setSortOrder] = useState<"asc" | "desc">("asc");
   const [search, setSearch] = useState("");
   const [selectedTask, setSelectedTask] = useState<Task | null>(null);
+  const [isInitialLoad, setIsInitialLoad] = useState(true);
 
   const { data, error, isLoading, isFetching } = useGetTasksQuery({
     page,
@@ -79,11 +63,31 @@ export default function TaskListWrapper() {
     search,
   });
 
-  const loadMore = () => {
-    if (data && page < data.totalPages) {
+  const loadMore = useCallback(() => {
+    if (data && page < data.totalPages && !isFetching) {
       setPage((prev) => prev + 1);
     }
-  };
+  }, [data, page, isFetching]);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const { scrollTop, scrollHeight, clientHeight } =
+        document.documentElement;
+      if (scrollTop + clientHeight >= scrollHeight - 500 && !isFetching) {
+        loadMore();
+      }
+    };
+
+    const debouncedScroll = debounce(handleScroll, 100);
+    window.addEventListener("scroll", debouncedScroll);
+    return () => window.removeEventListener("scroll", debouncedScroll);
+  }, [loadMore, isFetching]);
+
+  useEffect(() => {
+    if (data?.currentPage === 1 && isInitialLoad) {
+      setIsInitialLoad(false);
+    }
+  }, [data, isInitialLoad]);
 
   useEffect(() => {
     setPage(1);
@@ -108,11 +112,6 @@ export default function TaskListWrapper() {
       {data && (
         <>
           <TaskList tasks={data.data} onTaskSelect={setSelectedTask} />
-          {data.currentPage < data.totalPages && (
-            <LoadMoreButton onClick={loadMore} disabled={isFetching}>
-              {isFetching ? "Loading..." : "Load More"}
-            </LoadMoreButton>
-          )}
           <TaskDrawer
             task={selectedTask}
             onClose={() => setSelectedTask(null)}
@@ -120,7 +119,7 @@ export default function TaskListWrapper() {
         </>
       )}
 
-      {isLoading && (
+      {(isFetching || isLoading) && (
         <div aria-live="polite">
           {Array(5)
             .fill(null)
@@ -131,4 +130,15 @@ export default function TaskListWrapper() {
       )}
     </WrapperContainer>
   );
+}
+
+function debounce<T extends (...args: never[]) => void>(
+  fn: T,
+  delay: number
+): (...args: Parameters<T>) => void {
+  let timeoutId: ReturnType<typeof setTimeout>;
+  return (...args: Parameters<T>) => {
+    clearTimeout(timeoutId);
+    timeoutId = setTimeout(() => fn(...args), delay);
+  };
 }
