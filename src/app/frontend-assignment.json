@@ -1,0 +1,195 @@
+{
+  "tasks": [
+    {
+      "id": 1,
+      "name": "Implement login page",
+      "description": "Create user authentication UI",
+      "assignee": "John Doe",
+      "status": "In Progress",
+      "dueDate": "2024-03-15",
+      "createdAt": "2024-02-01T08:00:00Z",
+      "comments": [
+        {
+          "id": 1,
+          "author": "Alice Smith",
+          "text": "Need to add password validation",
+          "timestamp": "2024-02-02T09:30:00Z"
+        },
+        {
+          "id": 2,
+          "author": "Bob Johnson",
+          "text": "Design review completed",
+          "timestamp": "2024-02-03T14:15:00Z"
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "name": "Database Schema Design",
+      "description": "Design core database structure",
+      "details": "15 tables with relationships, indexes, and constraints",
+      "assignee": "Jane Smith",
+      "status": "Completed",
+      "dueDate": "2024-03-10",
+      "estimatedHours": 6,
+      "comments": ["Approved by tech lead"],
+      "createdAt": "2024-02-01T08:00:00Z"
+    },
+    {
+      "id": 3,
+      "name": "User Profile System",
+      "description": "Build user profile management",
+      "details": "Supports avatars, bio, and social links",
+      "assignee": "Alice Chen",
+      "status": "Pending",
+      "dueDate": "2024-03-20",
+      "estimatedHours": 5,
+      "comments": ["Avatar upload needs testing"],
+      "createdAt": "2024-02-01T08:00:00Z"
+    },
+    {
+      "id": 4,
+      "name": "API Documentation",
+      "description": "Create developer API guide",
+      "details": "45 endpoints with examples in 3 languages",
+      "assignee": "Bob Wilson",
+      "status": "In Progress",
+      "dueDate": "2024-03-18",
+      "estimatedHours": 4,
+      "comments": ["Swagger UI integration needed"],
+      "createdAt": "2024-02-01T08:00:00Z"
+    },
+    {
+      "id": 5,
+      "name": "Mobile Responsiveness",
+      "description": "Implement responsive layouts",
+      "details": "Covers 5 screen breakpoints",
+      "assignee": "Emma Davis",
+      "status": "Completed",
+      "dueDate": "2024-03-12",
+      "estimatedHours": 7,
+      "comments": ["Tablet layout needs refinement"],
+      "createdAt": "2024-02-01T08:00:00Z"
+    },
+    {
+      "id": 6,
+      "name": "Notification System",
+      "description": "Build user notification center",
+      "details": "Supports email and in-app notifications",
+      "assignee": "Michael Brown",
+      "status": "In Progress",
+      "dueDate": "2024-03-22",
+      "estimatedHours": 9,
+      "comments": ["Email templates pending"],
+      "createdAt": "2024-02-01T08:00:00Z"
+    },
+    {
+      "id": 7,
+      "name": "Search Functionality",
+      "description": "Implement global search",
+      "details": "Full-text search across 3 collections",
+      "assignee": "Sarah Wilson",
+      "status": "Pending",
+      "dueDate": "2024-03-25",
+      "estimatedHours": 6,
+      "comments": ["Need search index optimization"],
+      "createdAt": "2024-02-01T08:00:00Z"
+    },
+    {
+      "id": 8,
+      "name": "Analytics Dashboard",
+      "description": "Create usage statistics view",
+      "details": "5 main widgets with real-time updates",
+      "assignee": "David Lee",
+      "status": "In Progress",
+      "dueDate": "2024-03-19",
+      "estimatedHours": 10,
+      "comments": ["Data sampling rate needs adjustment"],
+      "createdAt": "2024-02-01T08:00:00Z"
+    },
+    {
+      "id": 9,
+      "name": "Payment Gateway",
+      "description": "Integrate Stripe payments",
+      "details": "Supports 3 currencies and subscriptions",
+      "assignee": "Olivia Martinez",
+      "status": "Pending",
+      "dueDate": "2024-03-28",
+      "estimatedHours": 12,
+      "comments": ["PCI compliance checklist pending"],
+      "createdAt": "2024-02-01T08:00:00Z"
+    },
+    {
+      "id": 10,
+      "name": "Error Monitoring",
+      "description": "Set up Sentry integration",
+      "details": "Track errors across 3 environments",
+      "assignee": "James Taylor",
+      "status": "Completed",
+      "dueDate": "2024-03-14",
+      "estimatedHours": 3,
+      "comments": ["Needs alert configuration"],
+      "createdAt": "2024-02-01T08:00:00Z"
+    },
+    {
+      "id": 11,
+      "name": "CI/CD Pipeline",
+      "description": "Configure deployment workflow",
+      "details": "GitHub Actions for 2 deployment targets",
+      "assignee": "Sophia Anderson",
+      "status": "In Progress",
+      "dueDate": "2024-03-21",
+      "estimatedHours": 8,
+      "comments": ["Staging deployment tests needed"],
+      "createdAt": "2024-02-01T08:00:00Z"
+    },
+    {
+      "id": 12,
+      "name": "Accessibility Audit",
+      "description": "Ensure WCAG 2.1 compliance",
+      "details": "Screen reader testing for 50 components",
+      "assignee": "Liam Johnson",
+      "status": "Pending",
+      "dueDate": "2024-03-24",
+      "estimatedHours": 5,
+      "comments": ["Color contrast issues found"],
+      "createdAt": "2024-02-01T08:00:00Z"
+    },
+    {
+      "id": 13,
+      "name": "Localization System",
+      "description": "Add multi-language support",
+      "details": "Supports 5 languages with i18n",
+      "assignee": "Charlotte White",
+      "status": "In Progress",
+      "dueDate": "2024-03-26",
+      "estimatedHours": 7,
+      "comments": ["Translation files incomplete"],
+      "createdAt": "2024-02-01T08:00:00Z"
+    },
+    {
+      "id": 14,
+      "name": "Performance Optimization",
+      "description": "Improve page load times",
+      "details": "Target 90+ Lighthouse score",
+      "assignee": "Noah Harris",
+      "status": "Completed",
+      "dueDate": "2024-03-17",
+      "estimatedHours": 6,
+      "comments": ["Image compression implemented"],
+      "createdAt": "2024-02-01T08:00:00Z"
+    },
+    {
+      "id": 15,
+      "name": "Security Audit",
+      "description": "Conduct penetration testing",
+      "details": "100 test cases across OWASP Top 10",
+      "assignee": "Ava Clark",
+      "status": "Pending",
+      "dueDate": "2024-03-30",
+      "estimatedHours": 10,
+      "comments": ["Initial scan completed"],
+      "createdAt": "2024-02-01T08:00:00Z"
+    }
+  ]
+}
