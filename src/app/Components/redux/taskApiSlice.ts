@@ -1,5 +1,10 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
-import { TaskResponseData, Task } from "../types";
+import {
+  TaskResponseData,
+  Task,
+  AnalyticsData,
+  EstimationHoursData,
+} from "../types";
 
 export const taskApiSlice = createApi({
   reducerPath: "taskApi",
@@ -47,8 +52,22 @@ export const taskApiSlice = createApi({
         );
       },
     }),
+
+    getAnalytics: builder.query<AnalyticsData, void>({
+      query: () => "/analytics",
+      providesTags: ["Analytics"],
+    }),
+
+    getEstimationHours: builder.query<EstimationHoursData[], void>({
+      query: () => "/analytics/estimation-hours",
+      providesTags: ["Analytics"],
+    }),
   }),
-  tagTypes: ["Tasks"],
+  tagTypes: ["Tasks", "Analytics"],
 });
 
-export const { useGetTasksQuery } = taskApiSlice;
+export const {
+  useGetTasksQuery,
+  useGetAnalyticsQuery,
+  useGetEstimationHoursQuery,
+} = taskApiSlice;

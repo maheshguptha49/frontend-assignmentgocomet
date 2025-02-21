@@ -6,8 +6,9 @@
       "description": "Create user authentication UI",
       "details": "Requires OAuth2 integration with Google and GitHub",
       "assignee": "John Doe",
-      "status": "In Progress",
-      "dueDate": "2024-03-15",
+      "status": "Completed",
+      "dueDate": "2024-03-10",
+      "completedAt": "2024-03-08T14:30:00Z",
       "createdAt": "2024-02-01T08:00:00Z",
       "comments": [
         {
@@ -28,11 +29,12 @@
       "id": 2,
       "name": "Database Schema Design",
       "description": "Design core database structure",
-      "details": "15 tables with relationships, indexes, and constraints",
+      "details": "20 tables with relationships, indexes, and constraints",
       "assignee": "Jane Smith",
       "status": "Completed",
-      "dueDate": "2024-03-10",
-      "estimatedHours": 6,
+      "dueDate": "2024-03-05",
+      "completedAt": "2024-03-04T16:45:00Z",
+      "estimatedHours": 18,
       "comments": [
         {
           "id": 3,
@@ -49,9 +51,10 @@
       "description": "Build user profile management",
       "details": "Supports avatars, bio, and social links",
       "assignee": "Alice Chen",
-      "status": "Pending",
-      "dueDate": "2024-03-20",
-      "estimatedHours": 5,
+      "status": "Completed",
+      "dueDate": "2024-03-12",
+      "completedAt": "2024-03-11T09:15:00Z",
+      "estimatedHours": 22,
       "comments": [
         {
           "id": 4,
@@ -66,24 +69,23 @@
       "id": 4,
       "name": "API Documentation",
       "description": "Create developer API guide",
-      "details": "45 endpoints with examples in 3 languages",
+      "details": "60 endpoints with examples in 5 languages",
       "assignee": "Bob Wilson",
       "status": "In Progress",
-      "dueDate": "2024-03-18",
-      "estimatedHours": 4,
-
+      "dueDate": "2024-03-25",
+      "estimatedHours": 28,
       "createdAt": "2024-02-01T08:00:00Z"
     },
     {
       "id": 5,
       "name": "Mobile Responsiveness",
       "description": "Implement responsive layouts",
-      "details": "Covers 5 screen breakpoints",
+      "details": "Covers 7 screen breakpoints",
       "assignee": "Emma Davis",
       "status": "Completed",
-      "dueDate": "2024-03-12",
-      "estimatedHours": 7,
-
+      "dueDate": "2024-03-18",
+      "completedAt": "2024-03-16T11:20:00Z",
+      "estimatedHours": 35,
       "createdAt": "2024-02-01T08:00:00Z"
     },
     {
@@ -95,7 +97,6 @@
       "status": "In Progress",
       "dueDate": "2024-03-22",
       "estimatedHours": 9,
-
       "createdAt": "2024-02-01T08:00:00Z"
     },
     {
@@ -107,7 +108,6 @@
       "status": "Pending",
       "dueDate": "2024-03-25",
       "estimatedHours": 6,
-
       "createdAt": "2024-02-01T08:00:00Z"
     },
     {
@@ -119,7 +119,6 @@
       "status": "In Progress",
       "dueDate": "2024-03-19",
       "estimatedHours": 10,
-
       "createdAt": "2024-02-01T08:00:00Z"
     },
     {
@@ -131,7 +130,6 @@
       "status": "Pending",
       "dueDate": "2024-03-28",
       "estimatedHours": 12,
-
       "createdAt": "2024-02-01T08:00:00Z"
     },
     {
@@ -142,8 +140,8 @@
       "assignee": "James Taylor",
       "status": "Completed",
       "dueDate": "2024-03-14",
+      "completedAt": "2024-03-14T12:00:00Z",
       "estimatedHours": 3,
-
       "createdAt": "2024-02-01T08:00:00Z"
     },
     {
@@ -155,7 +153,6 @@
       "status": "In Progress",
       "dueDate": "2024-03-21",
       "estimatedHours": 8,
-
       "createdAt": "2024-02-01T08:00:00Z"
     },
     {
@@ -167,7 +164,6 @@
       "status": "Pending",
       "dueDate": "2024-03-24",
       "estimatedHours": 5,
-
       "createdAt": "2024-02-01T08:00:00Z"
     },
     {
@@ -179,7 +175,6 @@
       "status": "In Progress",
       "dueDate": "2024-03-26",
       "estimatedHours": 7,
-
       "createdAt": "2024-02-01T08:00:00Z"
     },
     {
@@ -190,21 +185,142 @@
       "assignee": "Noah Harris",
       "status": "Completed",
       "dueDate": "2024-03-17",
+      "completedAt": "2024-03-17T12:00:00Z",
       "estimatedHours": 6,
-
       "createdAt": "2024-02-01T08:00:00Z"
     },
     {
       "id": 15,
       "name": "Security Audit",
       "description": "Conduct penetration testing",
-      "details": "100 test cases across OWASP Top 10",
+      "details": "150 test cases across OWASP Top 10",
       "assignee": "Ava Clark",
       "status": "Pending",
-      "dueDate": "2024-03-30",
-      "estimatedHours": 10,
-
+      "dueDate": "2024-04-05",
+      "estimatedHours": 42,
       "createdAt": "2024-02-01T08:00:00Z"
+    },
+    {
+      "id": 16,
+      "name": "Email Notification System",
+      "description": "Implement email notification pipeline",
+      "details": "Support transactional and marketing emails",
+      "assignee": "Sophia Wilson",
+      "status": "In Progress",
+      "dueDate": "2024-04-02",
+      "estimatedHours": 8,
+      "createdAt": "2024-03-01T08:00:00Z",
+      "comments": [
+        {
+          "id": 16,
+          "author": "DevOps",
+          "text": "Need SMTP configuration",
+          "timestamp": "2024-03-05T11:20:00Z"
+        }
+      ]
+    },
+    {
+      "id": 17,
+      "name": "File Upload Service",
+      "description": "Create secure file upload endpoint",
+      "details": "Support up to 2GB files with progress tracking",
+      "assignee": "Michael Brown",
+      "status": "Completed",
+      "dueDate": "2024-03-18",
+      "completedAt": "2024-03-15T14:00:00Z",
+      "estimatedHours": 6,
+      "createdAt": "2024-03-01T08:00:00Z"
+    },
+    {
+      "id": 18,
+      "name": "Admin Dashboard",
+      "description": "Build admin control panel",
+      "details": "5 main modules with user management",
+      "assignee": "Emma Wilson",
+      "status": "In Progress",
+      "dueDate": "2024-04-05",
+      "estimatedHours": 12,
+      "createdAt": "2024-03-01T08:00:00Z"
+    },
+    {
+      "id": 19,
+      "name": "Data Export Feature",
+      "description": "Implement CSV/Excel export",
+      "details": "Support large dataset exports",
+      "assignee": "Daniel Miller",
+      "status": "Completed",
+      "dueDate": "2024-03-20",
+      "completedAt": "2024-03-18T09:45:00Z",
+      "estimatedHours": 5,
+      "createdAt": "2024-03-01T08:00:00Z"
+    },
+    {
+      "id": 20,
+      "name": "Two-Factor Auth",
+      "description": "Add 2FA to user accounts",
+      "details": "SMS and authenticator app support",
+      "assignee": "Olivia Davis",
+      "status": "Pending",
+      "dueDate": "2024-04-10",
+      "estimatedHours": 7,
+      "createdAt": "2024-03-01T08:00:00Z"
+    },
+    {
+      "id": 21,
+      "name": "API Rate Limiting",
+      "description": "Implement request throttling",
+      "details": "Custom limits per endpoint",
+      "assignee": "William Johnson",
+      "status": "Completed",
+      "dueDate": "2024-03-25",
+      "completedAt": "2024-03-24T16:30:00Z",
+      "estimatedHours": 4,
+      "createdAt": "2024-03-01T08:00:00Z"
+    },
+    {
+      "id": 22,
+      "name": "Content Moderation",
+      "description": "Implement user content filtering",
+      "details": "AI-based moderation system",
+      "assignee": "Charlotte Wilson",
+      "status": "In Progress",
+      "dueDate": "2024-04-07",
+      "estimatedHours": 9,
+      "createdAt": "2024-03-01T08:00:00Z"
+    },
+    {
+      "id": 23,
+      "name": "Data Backup System",
+      "description": "Implement automated backups",
+      "details": "Daily snapshots with cloud storage",
+      "assignee": "James Anderson",
+      "status": "Completed",
+      "dueDate": "2024-03-28",
+      "completedAt": "2024-03-27T11:00:00Z",
+      "estimatedHours": 6,
+      "createdAt": "2024-03-01T08:00:00Z"
+    },
+    {
+      "id": 24,
+      "name": "Social Sharing",
+      "description": "Add social media sharing",
+      "details": "Support 5 major platforms",
+      "assignee": "Amelia Thomas",
+      "status": "Pending",
+      "dueDate": "2024-04-12",
+      "estimatedHours": 3,
+      "createdAt": "2024-03-01T08:00:00Z"
+    },
+    {
+      "id": 25,
+      "name": "Performance Monitoring",
+      "description": "Add real-time metrics",
+      "details": "Track 10 key performance indicators",
+      "assignee": "Benjamin Martinez",
+      "status": "In Progress",
+      "dueDate": "2024-04-09",
+      "estimatedHours": 8,
+      "createdAt": "2024-03-01T08:00:00Z"
     }
   ]
 }

@@ -13,6 +13,7 @@ export type Task = {
   status: "Pending" | "In Progress" | "Completed";
   dueDate: string;
   createdAt: string;
+  completedAt: string;
   comments?: Comment[];
   details: string;
 };
@@ -22,4 +23,14 @@ export interface TaskResponseData {
   total: number;
   totalPages: number;
   currentPage: number;
+}
+
+export interface AnalyticsData {
+  completedPerDay: { date: string; count: number }[];
+  dueDatePerDay: { date: string; count: number }[];
+}
+
+export interface EstimationHoursData {
+  name: string;
+  value: number;
 }
