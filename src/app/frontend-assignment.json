@@ -4,6 +4,7 @@
       "id": 1,
       "name": "Implement login page",
       "description": "Create user authentication UI",
+      "details": "Requires OAuth2 integration with Google and GitHub",
       "assignee": "John Doe",
       "status": "In Progress",
       "dueDate": "2024-03-15",
@@ -32,7 +33,14 @@
       "status": "Completed",
       "dueDate": "2024-03-10",
       "estimatedHours": 6,
-      "comments": ["Approved by tech lead"],
+      "comments": [
+        {
+          "id": 3,
+          "author": "System",
+          "text": "Approved by tech lead",
+          "timestamp": "2024-02-04T10:00:00Z"
+        }
+      ],
       "createdAt": "2024-02-01T08:00:00Z"
     },
     {
@@ -44,7 +52,14 @@
       "status": "Pending",
       "dueDate": "2024-03-20",
       "estimatedHours": 5,
-      "comments": ["Avatar upload needs testing"],
+      "comments": [
+        {
+          "id": 4,
+          "author": "QA Team",
+          "text": "Avatar upload needs testing",
+          "timestamp": "2024-02-05T14:30:00Z"
+        }
+      ],
       "createdAt": "2024-02-01T08:00:00Z"
     },
     {
@@ -56,7 +71,7 @@
       "status": "In Progress",
       "dueDate": "2024-03-18",
       "estimatedHours": 4,
-      "comments": ["Swagger UI integration needed"],
+
       "createdAt": "2024-02-01T08:00:00Z"
     },
     {
@@ -68,7 +83,7 @@
       "status": "Completed",
       "dueDate": "2024-03-12",
       "estimatedHours": 7,
-      "comments": ["Tablet layout needs refinement"],
+
       "createdAt": "2024-02-01T08:00:00Z"
     },
     {
@@ -80,7 +95,7 @@
       "status": "In Progress",
       "dueDate": "2024-03-22",
       "estimatedHours": 9,
-      "comments": ["Email templates pending"],
+
       "createdAt": "2024-02-01T08:00:00Z"
     },
     {
@@ -92,7 +107,7 @@
       "status": "Pending",
       "dueDate": "2024-03-25",
       "estimatedHours": 6,
-      "comments": ["Need search index optimization"],
+
       "createdAt": "2024-02-01T08:00:00Z"
     },
     {
@@ -104,7 +119,7 @@
       "status": "In Progress",
       "dueDate": "2024-03-19",
       "estimatedHours": 10,
-      "comments": ["Data sampling rate needs adjustment"],
+
       "createdAt": "2024-02-01T08:00:00Z"
     },
     {
@@ -116,7 +131,7 @@
       "status": "Pending",
       "dueDate": "2024-03-28",
       "estimatedHours": 12,
-      "comments": ["PCI compliance checklist pending"],
+
       "createdAt": "2024-02-01T08:00:00Z"
     },
     {
@@ -128,7 +143,7 @@
       "status": "Completed",
       "dueDate": "2024-03-14",
       "estimatedHours": 3,
-      "comments": ["Needs alert configuration"],
+
       "createdAt": "2024-02-01T08:00:00Z"
     },
     {
@@ -140,7 +155,7 @@
       "status": "In Progress",
       "dueDate": "2024-03-21",
       "estimatedHours": 8,
-      "comments": ["Staging deployment tests needed"],
+
       "createdAt": "2024-02-01T08:00:00Z"
     },
     {
@@ -152,7 +167,7 @@
       "status": "Pending",
       "dueDate": "2024-03-24",
       "estimatedHours": 5,
-      "comments": ["Color contrast issues found"],
+
       "createdAt": "2024-02-01T08:00:00Z"
     },
     {
@@ -164,7 +179,7 @@
       "status": "In Progress",
       "dueDate": "2024-03-26",
       "estimatedHours": 7,
-      "comments": ["Translation files incomplete"],
+
       "createdAt": "2024-02-01T08:00:00Z"
     },
     {
@@ -176,7 +191,7 @@
       "status": "Completed",
       "dueDate": "2024-03-17",
       "estimatedHours": 6,
-      "comments": ["Image compression implemented"],
+
       "createdAt": "2024-02-01T08:00:00Z"
     },
     {
@@ -188,7 +203,7 @@
       "status": "Pending",
       "dueDate": "2024-03-30",
       "estimatedHours": 10,
-      "comments": ["Initial scan completed"],
+
       "createdAt": "2024-02-01T08:00:00Z"
     }
   ]

@@ -28,9 +28,15 @@ const TaskRow = styled.div`
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
   gap: 1rem;
   transition: transform 0.2s ease;
+  cursor: pointer;
 
   &:hover {
     transform: translateY(-2px);
+    background-color: #f8f9fa;
+  }
+
+  &:focus-visible {
+    box-shadow: 0 0 0 2px #007bff;
   }
 `;
 
@@ -79,7 +85,18 @@ export default function TaskList({
       </TaskHeader>
 
       {tasks.map((task, index) => (
-        <TaskRow key={task.id} onClick={() => onTaskSelect(task)}>
+        <TaskRow
+          key={task.id}
+          role="button"
+          tabIndex={0}
+          aria-label={`View details of task ${task.name}`}
+          onClick={() => onTaskSelect(task)}
+          onKeyDown={(e) => {
+            if (e.key === "Enter" || e.key === " ") {
+              onTaskSelect(task);
+            }
+          }}
+        >
           <TaskCell width="5%">{index + 1}</TaskCell>
           {task.createdAt && (
             <TaskCell width="10%">

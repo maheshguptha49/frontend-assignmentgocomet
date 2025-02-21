@@ -116,39 +116,9 @@ export default function TaskDrawer({
             <Section>
               <Label>Task Details</Label>
               <DetailRow>
-                <DetailLabel>Name:</DetailLabel>
-                <DetailValue>{task.name}</DetailValue>
-              </DetailRow>
-              <DetailRow>
-                <DetailLabel>Description:</DetailLabel>
-                <DetailValue>{task.description}</DetailValue>
-              </DetailRow>
-              <DetailRow>
-                <DetailLabel>Assignee:</DetailLabel>
-                <DetailValue>{task.assignee}</DetailValue>
-              </DetailRow>
-              <DetailRow>
-                <DetailLabel>Status:</DetailLabel>
-                <DetailValue>{task.status}</DetailValue>
-              </DetailRow>
-              <DetailRow>
-                <DetailLabel>Created At:</DetailLabel>
+                <DetailLabel>Details:</DetailLabel>
                 <DetailValue>
-                  {new Date(task.createdAt).toLocaleDateString("en-US", {
-                    year: "numeric",
-                    month: "long",
-                    day: "numeric",
-                  })}
-                </DetailValue>
-              </DetailRow>
-              <DetailRow>
-                <DetailLabel>Due Date:</DetailLabel>
-                <DetailValue>
-                  {new Date(task.dueDate).toLocaleDateString("en-US", {
-                    year: "numeric",
-                    month: "long",
-                    day: "numeric",
-                  })}
+                  {task.details || "No additional details provided"}
                 </DetailValue>
               </DetailRow>
             </Section>
@@ -160,13 +130,17 @@ export default function TaskDrawer({
                   <CommentHeader>
                     <CommentAuthor>{comment.author}</CommentAuthor>
                     <CommentTime>
-                      {new Date(comment.timestamp).toLocaleDateString("en-US", {
-                        year: "numeric",
-                        month: "short",
-                        day: "numeric",
-                        hour: "2-digit",
-                        minute: "2-digit",
-                      })}
+                      {comment.timestamp &&
+                        new Date(comment.timestamp).toLocaleDateString(
+                          "en-US",
+                          {
+                            year: "numeric",
+                            month: "short",
+                            day: "numeric",
+                            hour: "2-digit",
+                            minute: "2-digit",
+                          }
+                        )}
                     </CommentTime>
                   </CommentHeader>
                   <CommentText>{comment.text}</CommentText>
